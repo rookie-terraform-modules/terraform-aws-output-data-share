@@ -5,4 +5,4 @@
 
 [Terraform Module Registry](https://registry.terraform.io/modules/tobeyOguney/remote-state-s3-backend/aws)
 
-Secure sharing of Terraform root module outputs across teams/projects/organizations
+Secure sharing of Terraform root module outputs across teams/projects/organizations.
