@@ -18,7 +18,7 @@ module "remote_state" {
     {
       name               = "my-group"
       access_restriction = "all_account_users"
-      outputs = [
+      data = [
         {
           output_key   = "my-key"
           output_value = "my-value"

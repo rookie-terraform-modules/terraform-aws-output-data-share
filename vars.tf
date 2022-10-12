@@ -22,7 +22,7 @@ variable "export_output_groups" {
   type = list(object({
     name               = string
     access_restriction = string
-    user_arns          = list(string)
+    user_arns          = optional(list(string))
     data = list(object({
       output_key   = string
       output_value = string
