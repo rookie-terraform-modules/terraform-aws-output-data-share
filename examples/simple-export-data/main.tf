@@ -9,14 +9,6 @@ terraform {
   }
 }
 
-locals {
-  region = "us-east-1"
-}
-
-provider "aws" {
-  region = local.region
-}
-
 module "remote_state" {
   source         = "../../"
   operation_mode = "export_data"
