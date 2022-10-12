@@ -13,7 +13,7 @@ module "remote_state" {
   source         = "../../"
   operation_mode = "export_data"
   bucket_name    = "my-terraform-state-bucket"
-  bucket_region  = local.region
+  bucket_region  = "eu-west-1"
   export_output_groups = [
     {
       name               = "my-group"

@@ -13,5 +13,5 @@ module "remote_state" {
   source         = "../../"
   operation_mode = "create_bucket"
   bucket_name    = "my-terraform-state-bucket"
-  bucket_region  = local.region
+  bucket_region  = "eu-west-1"
 }
