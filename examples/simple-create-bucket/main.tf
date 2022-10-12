@@ -14,8 +14,4 @@ module "remote_state" {
   operation_mode = "create_bucket"
   bucket_name    = "my-terraform-state-bucket"
   bucket_region  = local.region
-
-  providers = {
-    aws = aws
-  }
 }

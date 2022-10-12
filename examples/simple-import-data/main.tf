@@ -20,8 +20,4 @@ module "remote_state" {
       access_restriction = "all_account_users"
     }
   ]
-
-  providers = {
-    aws = aws
-  }
 }

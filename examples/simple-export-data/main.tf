@@ -26,8 +26,4 @@ module "remote_state" {
       ]
     }
   ]
-
-  providers = {
-    aws = aws
-  }
 }
