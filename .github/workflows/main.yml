@@ -32,7 +32,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Check examples
         env:
-          EXAMPLES: simple
+          EXAMPLES: simple-create-bucket simple-export-data simple-import-data
         run: |
           for EXAMPLE in ${EXAMPLES}
           do
