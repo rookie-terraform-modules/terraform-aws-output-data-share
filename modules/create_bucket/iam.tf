@@ -8,7 +8,7 @@ data "aws_iam_policy_document" "data_share_bucket_policy" {
 
     principals {
       type        = "AWS"
-      identifiers = "*"
+      identifiers = ["*"]
     }
 
     condition {
@@ -38,7 +38,7 @@ data "aws_iam_policy_document" "data_share_bucket_policy" {
 
     principals {
       type        = "AWS"
-      identifiers = "*"
+      identifiers = ["*"]
     }
 
     condition {
