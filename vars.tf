@@ -28,6 +28,7 @@ variable "export_output_groups" {
       output_value = string
     }))
   }))
+  default     = []
   description = <<EOF
   List of objects containing the following attributes:
 
@@ -51,6 +52,7 @@ variable "import_output_groups" {
     name               = string
     access_restriction = string
   }))
+  default     = []
   description = <<EOF
   List of objects containing the following attributes:
 
