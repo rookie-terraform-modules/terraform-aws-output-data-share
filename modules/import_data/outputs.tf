@@ -1,3 +1,3 @@
-output "import_data" {
-  value = local.import_data
+output "output_groups_data" {
+  value = local.output_groups_data
 }

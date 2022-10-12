@@ -1,4 +1,4 @@
-data "aws_iam_document" "explicit_users_accessible_data_share_policy" {
+data "aws_iam_policy_document" "explicit_users_accessible_data_share_policy" {
   statement {
     sid = "AllowExplicitPrincipalsAccess"
 
@@ -19,7 +19,7 @@ data "aws_iam_document" "explicit_users_accessible_data_share_policy" {
 resource "aws_iam_policy" "explicit_users_accessible_data_share_policy" {
   name        = "explicit_users_accessible_data_share_policy"
   description = "Policy to allow explicit users access to data share bucket"
-  policy      = data.aws_iam_document.explicit_users_accessible_data_share_policy.json
+  policy      = data.aws_iam_policy_document.explicit_users_accessible_data_share_policy.json
 }
 
 resource "aws_iam_user_policy_attachment" "explicit_users_accessible_data_share_policy_attachment" {

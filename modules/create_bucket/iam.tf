@@ -2,7 +2,7 @@ data "aws_organizations_organization" "current" {}
 
 data "aws_caller_identity" "current" {}
 
-data "aws_iam_document" "data_share_bucket_policy" {
+data "aws_iam_policy_document" "data_share_bucket_policy" {
   statement {
     sid = "AllowOrganizationAccess"
 
