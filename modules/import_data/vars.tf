@@ -3,12 +3,12 @@ variable "bucket_name" {
 }
 
 variable "import_data_config" {
-  type = object({
+  type = optional(object({
     name               = string
     access_restriction = string
     output_key         = string
-  })
-  default     = {}
+  }))
+  default     = null
   description = <<EOF
   Object containing the following attributes:
 
