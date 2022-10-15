@@ -3,7 +3,7 @@ variable "bucket_name" {
 }
 
 variable "export_data_config" {
-  type = list(object({
+  type = object({
     name               = string
     access_restriction = string
     iam_group_names    = list(string)
@@ -11,9 +11,9 @@ variable "export_data_config" {
       output_key   = string
       output_value = string
     }))
-  }))
+  })
   description = <<EOF
-  List of objects containing the following attributes:
+  Object containing the following attributes:
 
   name: The name of the output group to export. (Should be unique across all workspaces)
 
