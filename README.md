@@ -50,7 +50,7 @@ module "networking_data_exports" {
     bucket_region  = "us-east-1"
     operation_mode = "export_data"
 
-    export_output_group = {
+    export_data_config = {
         name               = "team-a-networking-data"
         access_restriction = "explicit_iam_groups"
         iam_group_names    = [
