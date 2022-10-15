@@ -20,7 +20,7 @@ This is powered by an encrypted S3 bucket (SSE-S3) for storage and group policy 
 - Create an encrypted S3 bucket to store exported module outputs.
 - Export module outputs for central access with fine-grained IAM access control.
   - Access to specific outputs (seperated in a group) can be granted to all account principals (IAM users, roles)
-  - Or access can be granted to user specified IAM groups via IAM group attachments.
+  - Access can be granted to user specified IAM groups via IAM group attachments.
 - Import module outputs from a different Terraform workspace (based on your permissions).
 
 ## Usage
