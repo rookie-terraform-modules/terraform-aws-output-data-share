@@ -17,7 +17,7 @@ module "remote_state" {
   export_output_groups = [
     {
       name               = "my-group"
-      access_restriction = "all_account_users"
+      access_restriction = "all_account_iam_principals"
       data = [
         {
           output_key   = "my-key"
