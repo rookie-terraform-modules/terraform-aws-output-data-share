@@ -22,17 +22,17 @@ module "networking_data_exports" {
     name               = "team-a-networking-data"
     access_restriction = "explicit_iam_groups"
     iam_group_names = [
-      var.team_b_iam_group_name,
-      var.team_c_iam_group_name,
+      "team_b",
+      "team_c",
     ]
     data = [
       {
         output_key   = "vpc_id",
-        output_value = var.team_a_vpc_id
+        output_value = "vpc-1234567890abcdef0"
       },
       {
         output_key   = "public_subnets_cidr_block",
-        output_value = var.team_a_public_subnets_cidr_block
+        output_value = "10.0.0.0/16"
       }
     ]
   }
@@ -53,11 +53,11 @@ module "app_url_exports" {
     data = [
       {
         output_key   = "merchant_app_url",
-        output_value = var.merchant_app_url
+        output_value = "https://merchant-app.acme.org"
       },
       {
         output_key   = "client_app_url",
-        output_value = var.client_app_url
+        output_value = "https://client-app.acme.org"
       }
     ]
   }
