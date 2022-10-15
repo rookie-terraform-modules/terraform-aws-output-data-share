@@ -48,12 +48,13 @@ variable "export_data_config" {
 #--------------------import_data mode variables--------------------#
 
 variable "import_data_config" {
-  type = optional(object({
+  type = object({
     name               = string
     access_restriction = string
     output_key         = string
-  }))
+  })
   default     = null
+  nullable    = true
   description = <<EOF
   Object containing the following attributes:
 
