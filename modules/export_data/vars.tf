@@ -2,7 +2,7 @@ variable "bucket_name" {
   type = string
 }
 
-variable "export_output_groups" {
+variable "export_data_config" {
   type = list(object({
     name               = string
     access_restriction = string

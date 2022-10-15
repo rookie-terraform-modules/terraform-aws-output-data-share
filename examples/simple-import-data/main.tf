@@ -8,16 +8,35 @@ terraform {
     }
   }
 }
+module "team_a_merchant_app_url_import" {
+  source = "../../"
 
-module "remote_state" {
-  source         = "../../"
+  bucket_name    = "acme-org-output-data-share"
+  bucket_region  = "us-east-1"
   operation_mode = "import_data"
-  bucket_name    = "my-terraform-state-bucket"
-  bucket_region  = "eu-west-1"
-  import_output_groups = [
-    {
-      name               = "my-group"
-      access_restriction = "all_account_iam_principals"
-    }
-  ]
+
+  import_data_config = {
+    name               = "team-a-app-url-data"
+    access_restriction = "all_account_iam_principals"
+    output_key         = "merchant_app_url"
+  }
+}
+
+module "team_a_vpc_id_import" {
+  source = "../../"
+
+  bucket_name    = "acme-org-output-data-share"
+  bucket_region  = "us-east-1"
+  operation_mode = "import_data"
+
+  import_data_config = {
+    name               = "team-a-networking-data"
+    access_restriction = "explicit_iam_groups"
+    output_key         = "vpc_id"
+  }
+}
+
+locals {
+  vpc_id  = module.team_a_vpc_id_import.value
+  app_url = module.team_a_merchant_app_url_import.value
 }

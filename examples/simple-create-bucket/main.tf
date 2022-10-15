@@ -9,9 +9,10 @@ terraform {
   }
 }
 
-module "remote_state" {
-  source         = "../../"
+module "output_data_share_bucket" {
+  source = "../../"
+
+  bucket_name    = "acme-org-output-data-share"
+  bucket_region  = "us-east-1"
   operation_mode = "create_bucket"
-  bucket_name    = "my-terraform-state-bucket"
-  bucket_region  = "eu-west-1"
 }

@@ -29,7 +29,7 @@ data "aws_iam_policy_document" "data_share_bucket_policy" {
 
     resources = [
       "arn:aws:s3:::${var.bucket_name}",
-      "arn:aws:s3:::${var.bucket_name}/account_accessible_data/*",
+      "arn:aws:s3:::${var.bucket_name}/account_accessible_output_exports/*",
     ]
   }
 }
