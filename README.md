@@ -132,3 +132,32 @@ locals {
     app_url = module.team_a_merchant_app_url_import.value
 }
 ```
+
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1.4 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 4.7 |
+
+## Providers
+
+No providers.
+
+## Inputs
+
+| Name | Description | Type | Required |
+|------|-------------|------|:--------:|
+| <a name="input_bucket_name"></a> [bucket\_name](#input\_bucket\_name) | n/a | `string` | yes |
+| <a name="input_bucket_region"></a> [bucket\_region](#input\_bucket\_region) | n/a | `string` | yes |
+| <a name="input_operation_mode"></a> [operation\_mode](#input\_operation\_mode) | valid values are create\_bucket, export\_data, import\_data | `string` | yes |
+| <a name="input_export_data_config"></a> [export\_data\_config](#input\_export\_data\_config) | Object containing the following attributes:<br><br>  name: The name of the output group to export. (Should be unique across all workspaces)<br><br>  access\_restriction: The access restriction to apply to the exported data. Valid values are: all\_account\_iam\_principals or explicit\_iam\_groups<br><br>  iam\_group\_names: List of IAM group names (Required if access\_restriction is explicit\_iam\_groups)<br><br>  data: List of objects containing the following attributes:<br>    output\_key: The key of the output to export.<br>    output\_value: The value of the output to export. | <pre>object({<br>    name               = string<br>    access_restriction = string<br>    iam_group_names    = optional(list(string))<br>    data = list(object({<br>      output_key   = string<br>      output_value = string<br>    }))<br>  })</pre> | no |
+| <a name="input_import_data_config"></a> [import\_data\_config](#input\_import\_data\_config) | Object containing the following attributes:<br><br>  name: The name of the output group containing the desired import.<br><br>  access\_restriction: The access restriction of the imported data. Valid values are: all\_account\_iam\_principals or explicit\_iam\_groups<br><br>  output\_key: The key of the output to import. | <pre>object({<br>    name               = string<br>    access_restriction = string<br>    output_key         = string<br>  })</pre> | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| <a name="output_value"></a> [value](#output\_value) | n/a |
+<!-- END_TF_DOCS -->
