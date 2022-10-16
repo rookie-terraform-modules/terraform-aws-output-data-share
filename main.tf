@@ -18,5 +18,4 @@ module "import_data" {
   source             = "./modules/import_data"
   bucket_name        = var.bucket_name
   import_data_config = var.import_data_config
-  tags               = var.tags
 }
