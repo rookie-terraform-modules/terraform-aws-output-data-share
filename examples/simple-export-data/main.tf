@@ -23,7 +23,6 @@ module "networking_data_exports" {
   }
 
   bucket_name    = "acme-org-output-data-share"
-  bucket_region  = "us-east-1"
   operation_mode = "export_data"
 
   export_data_config = {
@@ -56,7 +55,6 @@ module "app_url_exports" {
   }
 
   bucket_name    = "acme-org-output-data-share"
-  bucket_region  = "us-east-1"
   operation_mode = "export_data"
 
   export_data_config = {

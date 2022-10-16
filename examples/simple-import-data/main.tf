@@ -21,7 +21,6 @@ module "team_a_merchant_app_url_import" {
   }
 
   bucket_name    = "acme-org-output-data-share"
-  bucket_region  = "us-east-1"
   operation_mode = "import_data"
 
   import_data_config = {
@@ -39,7 +38,6 @@ module "team_a_vpc_id_import" {
   }
 
   bucket_name    = "acme-org-output-data-share"
-  bucket_region  = "us-east-1"
   operation_mode = "import_data"
 
   import_data_config = {

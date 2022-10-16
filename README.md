@@ -40,7 +40,6 @@ module "output_data_share_bucket" {
     }
 
     bucket_name    = "acme-org-output-data-share"
-    bucket_region  = "us-east-1"
     operation_mode = "create_bucket"
 }
 ```
@@ -62,7 +61,6 @@ module "networking_data_exports" {
   }
 
   bucket_name    = "acme-org-output-data-share"
-  bucket_region  = "us-east-1"
   operation_mode = "export_data"
 
   export_data_config = {
@@ -95,7 +93,6 @@ module "app_url_exports" {
   }
 
   bucket_name    = "acme-org-output-data-share"
-  bucket_region  = "us-east-1"
   operation_mode = "export_data"
 
   export_data_config = {
@@ -130,7 +127,6 @@ module "team_a_merchant_app_url_import" {
     }
 
     bucket_name    = "acme-org-output-data-share"
-    bucket_region  = "us-east-1"
     operation_mode = "import_data"
 
     import_data_config = {
@@ -148,7 +144,6 @@ module "team_a_vpc_id_import" {
     }
 
     bucket_name    = "acme-org-output-data-share"
-    bucket_region  = "us-east-1"
     operation_mode = "import_data"
 
     import_data_config = {
