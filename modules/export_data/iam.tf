@@ -30,6 +30,4 @@ resource "aws_iam_group_policy_attachment" "explicit_iam_groups_accessible_outpu
 
   group      = each.key
   policy_arn = aws_iam_policy.explicit_iam_groups_accessible_output_exports_share_policy[0].arn
-
-  tags = var.tags
 }

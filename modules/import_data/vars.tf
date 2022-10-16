@@ -20,11 +20,3 @@ variable "import_data_config" {
   output_key: The key of the output to import.
   EOF
 }
-
-variable "tags" {
-  description = "A mapping of tags to assign to resources."
-  type        = map(string)
-  default = {
-    Terraform = "true"
-  }
-}

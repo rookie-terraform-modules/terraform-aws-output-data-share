@@ -8,8 +8,6 @@ resource "aws_s3_bucket_policy" "data_share_bucket_policy" {
   bucket = aws_s3_bucket.data_share_bucket.id
 
   policy = data.aws_iam_policy_document.data_share_bucket_policy.json
-
-  tags = var.tags
 }
 
 resource "aws_s3_bucket_public_access_block" "data_share_bucket_public_access_block" {
@@ -19,8 +17,6 @@ resource "aws_s3_bucket_public_access_block" "data_share_bucket_public_access_bl
   block_public_policy     = true
   ignore_public_acls      = true
   restrict_public_buckets = true
-
-  tags = var.tags
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "data_share_bucket_encryption" {
@@ -31,6 +27,4 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "data_share_bucket
       sse_algorithm = "AES256"
     }
   }
-
-  tags = var.tags
 }
