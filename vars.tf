@@ -1,6 +1,6 @@
 variable "operation_mode" {
   type        = string
-  description = "valid values are create_bucket, export_data, import_data"
+  description = "valid values are `create_bucket`, `export_data`, `import_data`"
 
   validation {
     condition     = can(regex("^create_bucket|export_data|import_data$", var.operation_mode))
@@ -9,11 +9,13 @@ variable "operation_mode" {
 }
 
 variable "bucket_region" {
-  type = string
+  type        = string
+  description = "The region of the data share bucket"
 }
 
 variable "bucket_name" {
-  type = string
+  type        = string
+  description = "The name of the data share bucket"
 }
 
 
@@ -35,9 +37,9 @@ variable "export_data_config" {
 
   name: The name of the output group to export. (Should be unique across all workspaces)
 
-  access_restriction: The access restriction to apply to the exported data. Valid values are: all_account_iam_principals or explicit_iam_groups
+  access_restriction: The access restriction to apply to the exported data. Valid values are: `all_account_iam_principals` or `explicit_iam_groups`
 
-  iam_group_names: List of IAM group names (Required if access_restriction is explicit_iam_groups)
+  iam_group_names: List of IAM group names (Required if access_restriction is `explicit_iam_groups`)
 
   data: List of objects containing the following attributes:
     output_key: The key of the output to export.
@@ -61,7 +63,7 @@ variable "import_data_config" {
 
   name: The name of the output group containing the desired import.
 
-  access_restriction: The access restriction of the imported data. Valid values are: all_account_iam_principals or explicit_iam_groups
+  access_restriction: The access restriction of the imported data. Valid values are: `all_account_iam_principals` or `explicit_iam_groups`
 
   output_key: The key of the output to import.
   EOF
