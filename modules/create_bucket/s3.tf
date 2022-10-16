@@ -1,9 +1,7 @@
 resource "aws_s3_bucket" "data_share_bucket" {
   bucket = var.bucket_name
 
-  tags = {
-    "Name" = var.bucket_name
-  }
+  tags = var.tags
 }
 
 resource "aws_s3_bucket_policy" "data_share_bucket_policy" {
