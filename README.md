@@ -28,8 +28,16 @@ This is powered by an encrypted S3 bucket (SSE-S3) for storage and group policy 
 ### **Snippet on how you create the data share bucket.**
 
 ```terraform
+provider "aws" {
+  region = "us-east-1"
+}
+
 module "output_data_share_bucket" {
     source = "tobeyOguney/output-data-share/aws"
+
+    providers = {
+      aws         = aws
+    }
 
     bucket_name    = "acme-org-output-data-share"
     bucket_region  = "us-east-1"
@@ -40,11 +48,18 @@ module "output_data_share_bucket" {
 ### **Snippet on how you can export outputs to the data share bucket**
 
 ```terraform
+provider "aws" {
+  region = "us-east-1"
+}
 
 #------------For sensitive data-----------------#
 
 module "networking_data_exports" {
   source = "../../"
+
+  providers = {
+    aws         = aws
+  }
 
   bucket_name    = "acme-org-output-data-share"
   bucket_region  = "us-east-1"
@@ -75,6 +90,10 @@ module "networking_data_exports" {
 module "app_url_exports" {
   source = "../../"
 
+  providers = {
+    aws         = aws
+  }
+
   bucket_name    = "acme-org-output-data-share"
   bucket_region  = "us-east-1"
   operation_mode = "export_data"
@@ -99,8 +118,16 @@ module "app_url_exports" {
 ### **Snippet on how you can import outputs from the data share bucket**
 
 ```terraform
+provider "aws" {
+  region = "us-east-1"
+}
+
 module "team_a_merchant_app_url_import" {
     source = "tobeyOguney/output-data-share/aws"
+
+    providers = {
+      aws         = aws
+    }
 
     bucket_name    = "acme-org-output-data-share"
     bucket_region  = "us-east-1"
@@ -115,6 +142,10 @@ module "team_a_merchant_app_url_import" {
 
 module "team_a_vpc_id_import" {
     source = "tobeyOguney/output-data-share/aws"
+
+    providers = {
+      aws         = aws
+    }
 
     bucket_name    = "acme-org-output-data-share"
     bucket_region  = "us-east-1"
@@ -134,12 +165,13 @@ locals {
 ```
 
 <!-- BEGIN_TF_DOCS -->
+
 ## Requirements
 
-| Name | Version |
-|------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1.4 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 4.7 |
+| Name                                                                     | Version  |
+| ------------------------------------------------------------------------ | -------- |
+| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.1.4 |
+| <a name="requirement_aws"></a> [aws](#requirement_aws)                   | ~> 4.7   |
 
 ## Providers
 
@@ -147,17 +179,18 @@ No providers.
 
 ## Inputs
 
-| Name | Description | Type | Required |
-|------|-------------|------|:--------:|
-| <a name="input_bucket_name"></a> [bucket\_name](#input\_bucket\_name) | n/a | `string` | yes |
-| <a name="input_bucket_region"></a> [bucket\_region](#input\_bucket\_region) | n/a | `string` | yes |
-| <a name="input_operation_mode"></a> [operation\_mode](#input\_operation\_mode) | valid values are create\_bucket, export\_data, import\_data | `string` | yes |
-| <a name="input_export_data_config"></a> [export\_data\_config](#input\_export\_data\_config) | Object containing the following attributes:<br><br>  name: The name of the output group to export. (Should be unique across all workspaces)<br><br>  access\_restriction: The access restriction to apply to the exported data. Valid values are: all\_account\_iam\_principals or explicit\_iam\_groups<br><br>  iam\_group\_names: List of IAM group names (Required if access\_restriction is explicit\_iam\_groups)<br><br>  data: List of objects containing the following attributes:<br>    output\_key: The key of the output to export.<br>    output\_value: The value of the output to export. | <pre>object({<br>    name               = string<br>    access_restriction = string<br>    iam_group_names    = optional(list(string))<br>    data = list(object({<br>      output_key   = string<br>      output_value = string<br>    }))<br>  })</pre> | no |
-| <a name="input_import_data_config"></a> [import\_data\_config](#input\_import\_data\_config) | Object containing the following attributes:<br><br>  name: The name of the output group containing the desired import.<br><br>  access\_restriction: The access restriction of the imported data. Valid values are: all\_account\_iam\_principals or explicit\_iam\_groups<br><br>  output\_key: The key of the output to import. | <pre>object({<br>    name               = string<br>    access_restriction = string<br>    output_key         = string<br>  })</pre> | no |
+| Name                                                                                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Type                                                                                                                                                                                                         | Required |
+| --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------: |
+| <a name="input_bucket_name"></a> [bucket_name](#input_bucket_name)                      | n/a                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | `string`                                                                                                                                                                                                     |   yes    |
+| <a name="input_bucket_region"></a> [bucket_region](#input_bucket_region)                | n/a                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | `string`                                                                                                                                                                                                     |   yes    |
+| <a name="input_operation_mode"></a> [operation_mode](#input_operation_mode)             | valid values are create_bucket, export_data, import_data                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | `string`                                                                                                                                                                                                     |   yes    |
+| <a name="input_export_data_config"></a> [export_data_config](#input_export_data_config) | Object containing the following attributes:<br><br> name: The name of the output group to export. (Should be unique across all workspaces)<br><br> access_restriction: The access restriction to apply to the exported data. Valid values are: all_account_iam_principals or explicit_iam_groups<br><br> iam_group_names: List of IAM group names (Required if access_restriction is explicit_iam_groups)<br><br> data: List of objects containing the following attributes:<br> output_key: The key of the output to export.<br> output_value: The value of the output to export. | <pre>object({<br> name = string<br> access_restriction = string<br> iam_group_names = optional(list(string))<br> data = list(object({<br> output_key = string<br> output_value = string<br> }))<br> })</pre> |    no    |
+| <a name="input_import_data_config"></a> [import_data_config](#input_import_data_config) | Object containing the following attributes:<br><br> name: The name of the output group containing the desired import.<br><br> access_restriction: The access restriction of the imported data. Valid values are: all_account_iam_principals or explicit_iam_groups<br><br> output_key: The key of the output to import.                                                                                                                                                                                                                                                            | <pre>object({<br> name = string<br> access_restriction = string<br> output_key = string<br> })</pre>                                                                                                         |    no    |
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| <a name="output_value"></a> [value](#output\_value) | n/a |
+| Name                                               | Description |
+| -------------------------------------------------- | ----------- |
+| <a name="output_value"></a> [value](#output_value) | n/a         |
+
 <!-- END_TF_DOCS -->

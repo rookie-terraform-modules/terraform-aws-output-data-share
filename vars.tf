@@ -8,16 +8,18 @@ variable "operation_mode" {
   }
 }
 
-variable "bucket_region" {
-  type        = string
-  description = "The region of the data share bucket"
-}
-
 variable "bucket_name" {
   type        = string
   description = "The name of the data share bucket"
 }
 
+variable "tags" {
+  description = "A mapping of tags to assign to resources."
+  type        = map(string)
+  default = {
+    Terraform = "true"
+  }
+}
 
 #--------------------export_data mode variables--------------------#
 variable "export_data_config" {

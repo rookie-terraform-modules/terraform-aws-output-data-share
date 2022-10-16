@@ -9,10 +9,18 @@ terraform {
   }
 }
 
+provider "aws" {
+  region = "us-east-1"
+}
+
 #------------For sensitive data-----------------#
 
 module "networking_data_exports" {
   source = "../../"
+
+  providers = {
+    aws = aws
+  }
 
   bucket_name    = "acme-org-output-data-share"
   bucket_region  = "us-east-1"
@@ -42,6 +50,10 @@ module "networking_data_exports" {
 
 module "app_url_exports" {
   source = "../../"
+
+  providers = {
+    aws = aws
+  }
 
   bucket_name    = "acme-org-output-data-share"
   bucket_region  = "us-east-1"

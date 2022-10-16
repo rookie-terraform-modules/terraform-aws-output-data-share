@@ -8,8 +8,17 @@ terraform {
     }
   }
 }
+
+provider "aws" {
+  region = "us-east-1"
+}
+
 module "team_a_merchant_app_url_import" {
   source = "../../"
+
+  providers = {
+    aws = aws
+  }
 
   bucket_name    = "acme-org-output-data-share"
   bucket_region  = "us-east-1"
@@ -24,6 +33,10 @@ module "team_a_merchant_app_url_import" {
 
 module "team_a_vpc_id_import" {
   source = "../../"
+
+  providers = {
+    aws = aws
+  }
 
   bucket_name    = "acme-org-output-data-share"
   bucket_region  = "us-east-1"

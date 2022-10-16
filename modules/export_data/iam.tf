@@ -21,6 +21,8 @@ resource "aws_iam_policy" "explicit_iam_groups_accessible_output_exports_share_p
   name        = "explicit_iam_groups_accessible_output_exports_share_policy_${var.export_data_config.name}"
   description = "Policy to allow explicit users access to ${var.export_data_config.name} output group"
   policy      = data.aws_iam_policy_document.explicit_iam_groups_accessible_output_exports_share_policy_document[0].json
+
+  tags = var.tags
 }
 
 resource "aws_iam_group_policy_attachment" "explicit_iam_groups_accessible_output_exports_share_policy_attachments" {
@@ -28,4 +30,6 @@ resource "aws_iam_group_policy_attachment" "explicit_iam_groups_accessible_outpu
 
   group      = each.key
   policy_arn = aws_iam_policy.explicit_iam_groups_accessible_output_exports_share_policy[0].arn
+
+  tags = var.tags
 }
